@@ -1,0 +1,47 @@
+general:
+  training_problem: 'qis/easy'
+  testing_problem: 'qis/easy'
+  seed: 0
+  model_name: 'Ours'
+  device: 'cpu'
+  model:
+    epochs: 100
+    num_hyperconv: 6
+    num_bigconv: 1
+    nout: 1
+    nhid: 64
+    num_var_features: 9
+    num_edge_features: 2
+    num_con_features: 4
+    drop_rate: 0.1
+    hg_first_aggregate: 'sum'
+    hg_second_aggregate: 'mean'
+    ini_activation: 'leakyrelu'
+    hg_activation: 'leakyrelu'
+    bg_activation: 'leakyrelu'
+    final_activation: 'leakyrelu'
+    bias: true
+    fix_edge: false
+
+lns:
+  method: neuralqp
+  neuralqp:
+    alpha_initial: 0.1
+    initial_time_limit: 10
+    search_time_limit: 10
+    cross_time_limit: 10
+    block: 0.5
+    crossover: true
+    repair_policy: cautious
+    initial_policy: variable_relaxation
+    neighborhood_policy: constr_random
+    obj_limit: null
+    only_repair: false
+
+run:
+  num_instances: 0
+  num_workers: 4
+  repeats: 5
+  start_idx: 0
+  time_limit: 100
+  solver: scip
